@@ -2,22 +2,19 @@ import React, {useState} from "react";
 
 function FavButton({id}){
     let favTable = JSON.parse(localStorage.getItem('favTable')) || [];
-    const [isFav, setIsFav] = useState(favTable.includes(id));
 
     function addToFav(id, e) {
         if (favTable.includes(id)) {
             favTable = favTable.filter((favId) => favId !== id);
-            setIsFav(false)
         } else {
             favTable.push(id);
-            setIsFav(true)
         }
         localStorage.setItem('favTable', JSON.stringify(favTable));
     }
 
     return(
         <>
-            {isFav? 
+            {favTable.includes(id)? 
                 (
                     <button
                     className="favBntaddClicked"
