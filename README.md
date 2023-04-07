@@ -7,9 +7,9 @@ This project is a web application built with ViteJS and ReactJS that displays in
 To get started with this project, you'll need to have Node.js and npm installed on your computer.
 
 1. Clone the repository: git clone https://github.com/Passiflore/kitsu-app.git.
-2. Navigate to the project directory: cd Kitsu-App
-3. Install the dependencies: npm install
-4. Start the development server: npm run dev
+2. Navigate to the project directory: `cd Kitsu-App`
+3. Install the dependencies: `npm install`
+4. Start the development server: `npm run dev`
 5. Open your web browser and go to http://localhost:3000 to see the app in action.
 
 ## Features
