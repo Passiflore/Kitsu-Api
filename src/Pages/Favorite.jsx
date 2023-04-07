@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import  '../styles/Favorite.scss'
-import '../assets/ImgPlaceholder.jpg'
 import { Link } from 'react-router-dom'
 import { useQueries } from 'react-query';
 import axios from 'axios';
@@ -49,7 +48,6 @@ function Favorite(data) {
         </div>
         <div className='animeList' >
           {animesList.map((anime) => {
-            console.log(anime);
             return (
               <Link 
                 to={`/${anime.id}`}

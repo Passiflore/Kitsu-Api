@@ -7,40 +7,7 @@ import { useInfiniteQuery } from 'react-query';
 import Favorite from './Favorite';
 import Details from './Details';
 import SearchBar from '../components/SearchBar';
-
-
-function FilterSelector({filterArgs, setStateFilter, currentState}) {
-    const [isOpenSelector, setIsOpenSelector] = useState(false);
-
-    const handleSelectorClick = () => {
-        setIsOpenSelector(isOpen => !isOpen)
-    }
-
-    const handleOptionClick = (event) => {
-        setStateFilter(() => event.target.id)
-        setIsOpenSelector(isOpen => !isOpen)
-    }
-
-    return (
-        <>
-            <button onClick={handleSelectorClick} class="dropdownBtn">{currentState}
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 9L12 15L18 9" stroke="#4334C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-            </button>
-            {isOpenSelector ? (
-                <div className="dropdownContainer">
-                <div class="dropdownContent">
-                    {filterArgs.map(item => (<a onClick={handleOptionClick} className={currentState === item ? "focused" : null} id={item} href='#'>{item}</a>))}
-                </div>
-            </div>
-            ): null}
-        </>
-    )
-    
-}
-
-
+import FilterSelector from '../components/FilterSelector';
 
 const BasicTable = () => {
     const selectorFilterDate = ["Année", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014"];
@@ -109,7 +76,6 @@ const BasicTable = () => {
             if (dateFilterState !== "Année") url.searchParams.set("filter[seasonYear]", dateFilterState);
             if (ageFilterState !== "Âge recommandé") url.searchParams.set("filter[ageRating]", ageFilterState);
 
-            console.log(url.href);
             const res = await axios.get(url.href);
             return res.data;
         },
@@ -121,7 +87,6 @@ const BasicTable = () => {
     });
 
     useEffect(() => {
-        console.log(`SearchState: ${searchState}\ndateFilterState: ${dateFilterState}\nageFilterState:${ageFilterState}`);
         refetch();
     }, [searchState, dateFilterState, ageFilterState]);
 
